@@ -1,3 +1,4 @@
+import 'package:animator_app/views/DetailPage.dart';
 import 'package:animator_app/views/HomePage.dart';
 import 'package:animator_app/views/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       routes: {
-        // '/': (context) => Splashscreen(),
+        '/': (context) => splashscreen(),
         'home_page': (context) => HomePage(),
+        'detail_page': (context) => DetailPage(),
       },
     );
   }
