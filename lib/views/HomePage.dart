@@ -34,6 +34,19 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                'favourite_page',
+              );
+            },
+            icon: Icon(
+              Icons.favorite,
+              size: 30,
+            ),
+          )
+        ],
       ),
       body: FutureBuilder(
         future: jsonData,

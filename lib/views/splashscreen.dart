@@ -28,7 +28,7 @@ class _splashscreenState extends State<splashscreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  "https://i.pinimg.com/564x/0a/a5/dc/0aa5dc7d61c045f4bbd4b06744019974.jpg",
+                  "https://i.pinimg.com/564x/53/b3/8e/53b38eb3d09f85f96a663dc455ff5610.jpg",
                 ),
                 fit: BoxFit.cover,
               ),

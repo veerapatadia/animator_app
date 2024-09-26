@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/favouriteprovider.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -16,16 +19,18 @@ class _DetailPageState extends State<DetailPage>
     super.initState();
     rotationAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(
-        seconds: 2,
-      ),
+      duration: Duration(seconds: 2),
     );
     rotationAnimationController.forward();
   }
 
   @override
   Widget build(BuildContext context) {
-    Map data = ModalRoute.of(context)!.settings.arguments as Map;
+    Map<String, dynamic> data =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    bool isFavorite = favoritesProvider.isFavorite(data);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -36,6 +41,24 @@ class _DetailPageState extends State<DetailPage>
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              favoritesProvider.toggleFavorite(data);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(isFavorite
+                      ? "Removed from favorites"
+                      : "Added to favorites"),
+                ),
+              );
+            },
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? Colors.red : null,
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
