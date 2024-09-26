@@ -20,7 +20,7 @@ class _DetailPageState extends State<DetailPage>
         seconds: 2,
       ),
     );
-    rotationAnimationController.repeat();
+    rotationAnimationController.forward();
   }
 
   @override
@@ -46,14 +46,26 @@ class _DetailPageState extends State<DetailPage>
             width: 300,
             child: RotationTransition(
               turns: rotationAnimationController,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      "${data['image']}",
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+              child: SizedBox(
+                height: 270,
+                width: 300,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: (data['image'] as List).length,
+                  itemBuilder: (context, i) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      width: 300,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            data['image'][i],
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

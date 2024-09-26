@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                            "${allData[i]['image']}",
+                                            "${allData[i]['image'][0]}",
                                           ),
                                           fit: BoxFit.cover,
                                         ),
